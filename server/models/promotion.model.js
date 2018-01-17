@@ -1,6 +1,4 @@
 import mongoose from 'mongoose';
-import httpStatus from 'http-status';
-import APIError from '../helpers/APIError';
 
 const PromotionSchema = new mongoose.Schema({
   isPublic: {
@@ -25,14 +23,13 @@ PromotionSchema.method({
 });
 
 PromotionSchema.statics = {
-  get(promotionCode) {
-    return this.findOne({ promotionCode }, 'isPublic, tags, discount')
-    .exec()
-    .then((promotion) => {
+  get(promotionCodeReq) {
+    return this.findOne({ promotionCode: promotionCodeReq })
+    .exec((err, promotion) => {
       if (promotion) {
         return promotion;
       }
-      const err = new APIError('josimama not found', httpStatus.NOT_FOUND);
+
       return Promise.reject(err);
     });
   }
