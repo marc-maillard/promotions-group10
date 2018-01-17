@@ -22,7 +22,13 @@ export default {
 
   createPromotion: {
     body: {
-      isPublic: Joi.boolean().required()
+      isPublic: Joi.boolean().required(),
+      promotionCode:
+        Joi.any().when('isPublic', {
+          is: true,
+          then: Joi.string().equal(''),
+          otherwise: Joi.string().required()
+        })
     }
   },
 

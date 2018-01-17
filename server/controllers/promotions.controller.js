@@ -3,9 +3,9 @@ import Promotion from '../models/promotion.model';
 function create(req, res, next) {
   const promotion = new Promotion({
     isPublic: req.body.isPublic,
-    promotionCode: 'dfa',
-    tags: ['dfsaf'],
-    discount: 1
+    promotionCode: req.body.promotionCode,
+    tags: req.body.tags,
+    discount: req.body.discount
   });
 
   promotion.save()
