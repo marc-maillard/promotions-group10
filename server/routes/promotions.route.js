@@ -11,7 +11,7 @@ router.route('/')
 
 router.route('/:promotionCode')
     .post((req, res) => {
-      res.send('OKAY');
+      promotionCtrl.getDiscount(req, res);
     });
 
 // validate(paramValidation.getDiscount), promotionCtrl.getDiscount

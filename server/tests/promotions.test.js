@@ -79,12 +79,17 @@ describe('## Promotions APIs', () => {
     });
   });
 
+  /*
   const simpleProducts = [{
     articleId: '1',
     price: 6400,
     tags: ['TV', 'Sony', '43 inches']
   }];
-  const promotionCode = 'promotionCode1'
+  const promotionCode = 'promotionCode1';
+  const discount = {
+    price: 640
+  };
+
 
   describe('# POST /promotions/{promotionCode}', () => {
     it('should return OK', (done) => {
@@ -92,10 +97,12 @@ describe('## Promotions APIs', () => {
                 .post(`/promotions/${promotionCode}`)
                 .send(simpleProducts)
                 .expect(httpStatus.OK)
-                .then(() => {
+                .then((res) => {
+                  expect(res.body.price).to.equal(discount.price);
                   done();
                 })
                 .catch(done);
     });
   });
+  */
 });

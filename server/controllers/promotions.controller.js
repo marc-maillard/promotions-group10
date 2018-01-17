@@ -14,8 +14,9 @@ function create(req, res, next) {
 }
 
 
-function getDiscount(req, res, next) {
-  next();
+function getDiscount(req, res) {
+  const promotion = Promotion.get(req.param('promotionCode'));
+  res.send(promotion.tags);
 }
 
 export default { create, getDiscount };
