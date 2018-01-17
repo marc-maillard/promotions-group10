@@ -1,6 +1,7 @@
 import express from 'express';
 import userRoutes from './user.route';
 import authRoutes from './auth.route';
+import promotionsRoutes from './promotions.route';
 
 const router = express.Router(); // eslint-disable-line new-cap
 
@@ -14,5 +15,8 @@ router.use('/users', userRoutes);
 
 // mount auth routes at /auth
 router.use('/auth', authRoutes);
+
+// mount promotions routes at /promotions
+router.use('/promotions', promotionsRoutes);
 
 export default router;

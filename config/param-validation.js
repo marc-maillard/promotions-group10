@@ -20,6 +20,12 @@ export default {
     }
   },
 
+  createPromotion: {
+    body: {
+      isPublic: Joi.boolean().required()
+    }
+  },
+
   // POST /api/auth/login
   login: {
     body: {
