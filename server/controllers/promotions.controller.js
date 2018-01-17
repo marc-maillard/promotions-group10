@@ -13,4 +13,9 @@ function create(req, res, next) {
       .catch(e => next(e));
 }
 
-export default { create };
+
+function getDiscount(req, res, next) {
+  next();
+}
+
+export default { create, getDiscount };

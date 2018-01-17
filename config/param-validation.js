@@ -32,6 +32,13 @@ export default {
     }
   },
 
+
+  getDiscount: {
+    body: {
+      articleId: Joi.string().required()
+    }
+  },
+
   // POST /api/auth/login
   login: {
     body: {

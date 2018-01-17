@@ -78,4 +78,24 @@ describe('## Promotions APIs', () => {
                 .catch(done);
     });
   });
+
+  const simpleProducts = [{
+    articleId: '1',
+    price: 6400,
+    tags: ['TV', 'Sony', '43 inches']
+  }];
+  const promotionCode = 'promotionCode1'
+
+  describe('# POST /promotions/{promotionCode}', () => {
+    it('should return OK', (done) => {
+      request(app)
+                .post(`/promotions/${promotionCode}`)
+                .send(simpleProducts)
+                .expect(httpStatus.OK)
+                .then(() => {
+                  done();
+                })
+                .catch(done);
+    });
+  });
 });
