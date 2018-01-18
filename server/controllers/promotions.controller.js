@@ -1,4 +1,5 @@
 import azure from 'azure';
+import httpStatus from 'http-status';
 import Promotion from '../models/promotion.model';
 
 const serviceBusService = azure.createServiceBusService();
@@ -27,7 +28,7 @@ function create(req, res, next) {
           // console.log(error);
         }
       });
-      res.json(savedPromotion);
+      res.send(savedPromotion, httpStatus.CREATED);
     })
     .catch(e => next(e));
 

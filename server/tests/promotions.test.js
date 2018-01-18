@@ -27,7 +27,7 @@ describe('## Promotions APIs', () => {
       request(app)
                 .post('/promotions')
                 .send(promotion)
-                .expect(httpStatus.OK)
+                .expect(httpStatus.CREATED)
                 .then((res) => {
                   expect(res.body.isPublic).to.equal(promotion.isPublic);
                   expect(res.body.promotionCode).to.equal(promotion.promotionCode);
