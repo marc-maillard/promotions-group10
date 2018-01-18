@@ -8,7 +8,8 @@
   "engines": {
     "node": ">=4.8.0",
     "npm": ">=2.15.11",
-    "yarn": ">=0.20.3"
+    "yarn": ">=0.20.3",
+    "gulp": ">=3.9.1"
   },
   "scripts": {
     "start": "gulp serve",
@@ -21,8 +22,7 @@
     "test:watch": "yarn test -- --watch",
     "test:coverage": "cross-env NODE_ENV=test ./node_modules/.bin/istanbul cover _mocha -- --ui bdd --reporter spec --colors --compilers js:babel-core/register server/tests --recursive",
     "test:check-coverage": "yarn test:coverage && istanbul check-coverage",
-    "report-coverage": "coveralls < ./coverage/lcov.info",
-    "postinstall": "yarn"
+    "report-coverage": "coveralls < ./coverage/lcov.info"
   },
   "repository": {
     "type": "git",
