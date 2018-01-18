@@ -1,4 +1,7 @@
+import azure from 'azure';
 import Promotion from '../models/promotion.model';
+
+const serviceBusService = azure.createServiceBusService();
 
 function create(req, res, next) {
   const promotion = new Promotion({
@@ -8,11 +11,28 @@ function create(req, res, next) {
     discount: req.body.discount
   });
 
-  promotion.save()
-      .then(savedPromotion => res.json(savedPromotion))
-      .catch(e => next(e));
-}
+  const p = promotion.save()
+     .then((savedPromotion) => {
+       const message =
+         {
 
+           body:
+           JSON.stringify({
+             type: 'updated',
+             payload: savedPromotion
+           })
+         };
+       serviceBusService.sendTopicMessage('group10', message, (error) => {
+         if (error) {
+           console.log(error);
+         }
+       });
+       res.json(savedPromotion);
+     })
+     .catch(e => next(e));
+
+  return p;
+}
 
 function getDiscount(req, res) {
   const promotion = Promotion.get(req.params.promotionCode);

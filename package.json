@@ -41,6 +41,7 @@
     "boilerplate"
   ],
   "dependencies": {
+    "azure": "^2.2.1-preview",
     "bluebird": "3.4.6",
     "body-parser": "1.15.2",
     "compression": "1.6.2",
