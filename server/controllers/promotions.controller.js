@@ -14,20 +14,21 @@ function create(req, res, next) {
 
   const p = promotion.save()
     .then((savedPromotion) => {
-      const message =
-        {
-
-          body:
-          JSON.stringify({
-            type: 'updated',
-            payload: savedPromotion
-          })
-        };
-      serviceBusService.sendTopicMessage('group10', message, (error) => {
-        if (error) {
-          // console.log(error);
-        }
-      });
+      if (savedPromotion._doc.isPublic) {
+        const message =
+          {
+            body:
+            JSON.stringify({
+              type: 'updated',
+              payload: savedPromotion
+            })
+          };
+        serviceBusService.sendTopicMessage('group10', message, (error) => {
+          if (error) {
+            // console.log(error);
+          }
+        });
+      }
       res.send(savedPromotion, httpStatus.CREATED);
     })
     .catch(e => next(e));
